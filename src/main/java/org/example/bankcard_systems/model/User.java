@@ -1,5 +1,6 @@
 package org.example.bankcard_systems.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,10 @@ public class User {
 
     @Column
     private String password;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Card> cards;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

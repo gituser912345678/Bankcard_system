@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: bank-card-db
+    restart: always
+    environment:
+      POSTGRES_DB: bank_card
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 314159
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: bank-card-app
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/bank_card
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 314159
+    restart: always
+
+volumes:
+  postgres_data:

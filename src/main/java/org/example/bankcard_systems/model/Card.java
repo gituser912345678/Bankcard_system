@@ -19,8 +19,8 @@ public class Card {
     @Column(name = "card_number", nullable = false)
     private String cardNumber;
 
-    @Column(name = "owner_name", nullable = false)
-    private String ownerName;
+    @Column(name = "card_number_masked")
+    private String numberMasked;
 
     @Column(name = "expiry_date", nullable = false)
     private LocalDate expiryDate;

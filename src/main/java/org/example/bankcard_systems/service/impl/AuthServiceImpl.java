@@ -62,9 +62,9 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     public void save(JwtAuthRequest request) {
 
-        Role userRole = roleRepository.findByName("USER")
+        Role userRole = roleRepository.findByName("ROLE_USER")
                 .orElseGet(() -> {
-                    Role newRole = new Role("USER");
+                    Role newRole = new Role("ROLE_USER");
                     return roleRepository.save(newRole);
                 });
 
