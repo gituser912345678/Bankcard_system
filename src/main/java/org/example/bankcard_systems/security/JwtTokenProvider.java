@@ -111,7 +111,7 @@ public class JwtTokenProvider {
         }
     }
 
-    private String getId(String token) {
+    public String getId(String token) {
         return Jwts
                 .parser()
                 .verifyWith((SecretKey) key)
